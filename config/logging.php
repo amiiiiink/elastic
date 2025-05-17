@@ -54,9 +54,9 @@ return [
 
         'stack' => [
             'driver' => 'stack',
-            'channels' => explode(',', env('LOG_STACK', 'single')),
-            'ignore_exceptions' => false,
+            'channels' => ['single', 'elasticsearch'],
         ],
+
 
         'single' => [
             'driver' => 'single',
@@ -126,6 +126,12 @@ return [
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
         ],
+
+        'elasticsearch' => [
+            'driver' => 'custom',
+            'via' => App\Logging\ElasticsearchLogger::class,
+        ],
+
 
     ],
 
